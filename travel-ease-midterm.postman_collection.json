@@ -1,0 +1,395 @@
+{
+  "info": {
+    "name": "TravelEase Midterm",
+    "_postman_id": "travel-ease-midterm",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "0 Seed data",
+      "item": [
+        {
+          "name": "Seed - Create TravelInterest 1",
+          "event": [{"listen": "test","script": {"exec": ["pm.test('Status 201', function(){ pm.response.to.have.status(201); });"],"type": "text/javascript"}}],
+          "request": {"method": "POST","header": [{"key": "Content-Type","value": "application/json"}],"body": {"mode": "raw","raw": "{\"name\": \"Adventure\"}"},"url": {"raw": "http://localhost:8081/api/travel-interests/save","host": ["localhost"],"port": "8081","path": ["api","travel-interests","save"]}}
+        },
+        {
+          "name": "Seed - Create TravelInterest 2",
+          "event": [{"listen": "test","script": {"exec": ["pm.test('Status 201', function(){ pm.response.to.have.status(201); });"],"type": "text/javascript"}}],
+          "request": {"method": "POST","header": [{"key": "Content-Type","value": "application/json"}],"body": {"mode": "raw","raw": "{\"name\": \"Beach\"}"},"url": {"raw": "http://localhost:8081/api/travel-interests/save","host": ["localhost"],"port": "8081","path": ["api","travel-interests","save"]}}
+        },
+        {
+          "name": "Seed - Get All TravelInterests (store ids)",
+          "event": [{"listen": "test","script": {"exec": ["pm.test('Status 200', function(){ pm.response.to.have.status(200); });","var data = pm.response.json();","pm.collectionVariables.set('interestId1', data[0].id);","pm.collectionVariables.set('interestId2', data[1].id);"],"type": "text/javascript"}}],
+          "request": {"method": "GET","url": {"raw": "http://localhost:8081/api/travel-interests/all","host": ["localhost"],"port": "8081","path": ["api","travel-interests","all"]}}
+        },
+        {
+          "name": "Seed - Create AgencyBranch 1",
+          "event": [{"listen": "test","script": {"exec": ["pm.test('Status 201', function(){ pm.response.to.have.status(201); });"],"type": "text/javascript"}}],
+          "request": {"method": "POST","header": [{"key": "Content-Type","value": "application/json"}],"body": {"mode": "raw","raw": "{\"branchNumber\": 1, \"name\": \"Main Branch\"}"},"url": {"raw": "http://localhost:8081/api/agency-branches/save","host": ["localhost"],"port": "8081","path": ["api","agency-branches","save"]}}
+        },
+        {
+          "name": "Seed - Create AgencyBranch 2",
+          "event": [{"listen": "test","script": {"exec": ["pm.test('Status 201', function(){ pm.response.to.have.status(201); });"],"type": "text/javascript"}}],
+          "request": {"method": "POST","header": [{"key": "Content-Type","value": "application/json"}],"body": {"mode": "raw","raw": "{\"branchNumber\": 2, \"name\": \"West Branch\"}"},"url": {"raw": "http://localhost:8081/api/agency-branches/save","host": ["localhost"],"port": "8081","path": ["api","agency-branches","save"]}}
+        },
+        {
+          "name": "Seed - Get All AgencyBranches (store ids)",
+          "event": [{"listen": "test","script": {"exec": ["pm.test('Status 200', function(){ pm.response.to.have.status(200); });","var data = pm.response.json();","pm.collectionVariables.set('branchId1', data[0].id);","pm.collectionVariables.set('branchId2', data[1].id);"],"type": "text/javascript"}}],
+          "request": {"method": "GET","url": {"raw": "http://localhost:8081/api/agency-branches/all","host": ["localhost"],"port": "8081","path": ["api","agency-branches","all"]}}
+        },
+        {
+          "name": "Seed - Create TravelAgent 1",
+          "event": [{"listen": "test","script": {"exec": ["pm.test('Status 201', function(){ pm.response.to.have.status(201); });"],"type": "text/javascript"}}],
+          "request": {"method": "POST","header": [{"key": "Content-Type","value": "application/json"}],"body": {"mode": "raw","raw": "{\"firstName\": \"Alice\", \"lastName\": \"Smith\", \"email\": \"alice@example.com\"}"},"url": {"raw": "http://localhost:8081/api/travel-agents/save","host": ["localhost"],"port": "8081","path": ["api","travel-agents","save"]}}
+        },
+        {
+          "name": "Seed - Get All TravelAgents (store ids)",
+          "event": [{"listen": "test","script": {"exec": ["pm.test('Status 200', function(){ pm.response.to.have.status(200); });","var data = pm.response.json();","pm.collectionVariables.set('agentId1', data[0].id);"],"type": "text/javascript"}}],
+          "request": {"method": "GET","url": {"raw": "http://localhost:8081/api/travel-agents/all","host": ["localhost"],"port": "8081","path": ["api","travel-agents","all"]}}
+        },
+        {
+          "name": "Seed - Create Traveler 1",
+          "event": [{"listen": "test","script": {"exec": ["pm.test('Status 201', function(){ pm.response.to.have.status(201); });"],"type": "text/javascript"}}],
+          "request": {"method": "POST","header": [{"key": "Content-Type","value": "application/json"}],"body": {"mode": "raw","raw": "{\"firstName\": \"John\", \"lastName\": \"Doe\", \"passportNumber\": \"P123456\", \"email\": \"john@example.com\", \"nationality\": \"American\"}"},"url": {"raw": "http://localhost:8081/api/travelers/save","host": ["localhost"],"port": "8081","path": ["api","travelers","save"]}}
+        },
+        {
+          "name": "Seed - Get All Travelers (store ids)",
+          "event": [{"listen": "test","script": {"exec": ["pm.test('Status 200', function(){ pm.response.to.have.status(200); });","var data = pm.response.json();","pm.collectionVariables.set('travelerId1', data[0].id);","pm.collectionVariables.set('travelerPassport1', data[0].passportNumber);"],"type": "text/javascript"}}],
+          "request": {"method": "GET","url": {"raw": "http://localhost:8081/api/travelers/all","host": ["localhost"],"port": "8081","path": ["api","travelers","all"]}}
+        },
+        {
+          "name": "Seed - Create TripPlan (store id)",
+          "event": [{"listen": "test","script": {"exec": ["pm.test('Status 201', function(){ pm.response.to.have.status(201); });"],"type": "text/javascript"}}],
+          "request": {"method": "POST","header": [{"key": "Content-Type","value": "application/json"}],"body": {"mode": "raw","raw": "{\"departureDate\": \"2099-12-01\", \"destination\": \"Paris\", \"budget\": 3000, \"traveler\": {\"id\": \"{{travelerId1}}\"}, \"travelAgent\": {\"id\": \"{{agentId1}}\"}}"},"url": {"raw": "http://localhost:8081/api/trip-plans/save","host": ["localhost"],"port": "8081","path": ["api","trip-plans","save"]}}
+        },
+        {
+          "name": "Seed - Get All TripPlans (store ids)",
+          "event": [{"listen": "test","script": {"exec": ["pm.test('Status 200', function(){ pm.response.to.have.status(200); });","var data = pm.response.json();","pm.collectionVariables.set('tripPlanId1', data[0].id);"],"type": "text/javascript"}}],
+          "request": {"method": "GET","url": {"raw": "http://localhost:8081/api/trip-plans/all","host": ["localhost"],"port": "8081","path": ["api","trip-plans","all"]}}
+        }
+      ]
+    },
+    {
+      "name": "A - TravelInterest",
+      "item": [
+        {
+          "name": "A1 - Save TravelInterest",
+          "event": [{"listen": "test","script": {"exec": ["pm.test('Status 201', function(){ pm.response.to.have.status(201); });","pm.test('Body is Saved successfully', function(){ pm.expect(pm.response.text()).to.include('Saved successfully'); });"],"type": "text/javascript"}}],
+          "request": {"method": "POST","header": [{"key": "Content-Type","value": "application/json"}],"body": {"mode": "raw","raw": "{\"name\": \"Cultural\"}"},"url": {"raw": "http://localhost:8081/api/travel-interests/save","host": ["localhost"],"port": "8081","path": ["api","travel-interests","save"]}}
+        },
+        {
+          "name": "A2 - Get All TravelInterests",
+          "event": [{"listen": "test","script": {"exec": ["pm.test('Status 200', function(){ pm.response.to.have.status(200); });","pm.test('Returns array', function(){ pm.expect(pm.response.json()).to.be.an('array'); });"],"type": "text/javascript"}}],
+          "request": {"method": "GET","url": {"raw": "http://localhost:8081/api/travel-interests/all","host": ["localhost"],"port": "8081","path": ["api","travel-interests","all"]}}
+        },
+        {
+          "name": "A3 - Get TravelInterest by ID",
+          "event": [{"listen": "test","script": {"exec": ["pm.test('Status 200', function(){ pm.response.to.have.status(200); });","pm.test('Has id', function(){ pm.expect(pm.response.json()).to.have.property('id'); });"],"type": "text/javascript"}}],
+          "request": {"method": "GET","url": {"raw": "http://localhost:8081/api/travel-interests/{{interestId1}}","host": ["localhost"],"port": "8081","path": ["api","travel-interests","{{interestId1}}"]}}
+        },
+        {
+          "name": "A4 - Get TravelInterest by ID (not found)",
+          "event": [{"listen": "test","script": {"exec": ["pm.test('Status 404', function(){ pm.response.to.have.status(404); });","pm.test('Not exist message', function(){ pm.expect(pm.response.text()).to.include('does not exist'); });"],"type": "text/javascript"}}],
+          "request": {"method": "GET","url": {"raw": "http://localhost:8081/api/travel-interests/00000000-0000-0000-0000-000000000000","host": ["localhost"],"port": "8081","path": ["api","travel-interests","00000000-0000-0000-0000-000000000000"]}}
+        },
+        {
+          "name": "A5 - Update TravelInterest",
+          "event": [{"listen": "test","script": {"exec": ["pm.test('Status 200', function(){ pm.response.to.have.status(200); });","pm.test('Name updated', function(){ pm.expect(pm.response.json().name).to.eql('Adventure Updated'); });"],"type": "text/javascript"}}],
+          "request": {"method": "PUT","header": [{"key": "Content-Type","value": "application/json"}],"body": {"mode": "raw","raw": "{\"name\": \"Adventure Updated\"}"},"url": {"raw": "http://localhost:8081/api/travel-interests/update/{{interestId1}}","host": ["localhost"],"port": "8081","path": ["api","travel-interests","update","{{interestId1}}"]}}
+        },
+        {
+          "name": "A6 - Delete TravelInterest",
+          "event": [{"listen": "test","script": {"exec": ["pm.test('Status 200', function(){ pm.response.to.have.status(200); });","pm.test('Deleted message', function(){ pm.expect(pm.response.text()).to.include('deleted successfully'); });"],"type": "text/javascript"}}],
+          "request": {"method": "DELETE","url": {"raw": "http://localhost:8081/api/travel-interests/delete/{{interestId2}}","host": ["localhost"],"port": "8081","path": ["api","travel-interests","delete","{{interestId2}}"]}}
+        },
+        {
+          "name": "A7 - Get Unused TravelInterests",
+          "event": [{"listen": "test","script": {"exec": ["pm.test('Status 200', function(){ pm.response.to.have.status(200); });","pm.test('Returns array', function(){ pm.expect(pm.response.json()).to.be.an('array'); });"],"type": "text/javascript"}}],
+          "request": {"method": "GET","url": {"raw": "http://localhost:8081/api/travel-interests/unused","host": ["localhost"],"port": "8081","path": ["api","travel-interests","unused"]}}
+        }
+      ]
+    },
+    {
+      "name": "B - AgencyBranch",
+      "item": [
+        {
+          "name": "B1 - Save AgencyBranch",
+          "event": [{"listen": "test","script": {"exec": ["pm.test('Status 201', function(){ pm.response.to.have.status(201); });","pm.test('Saved successfully', function(){ pm.expect(pm.response.text()).to.include('Saved successfully'); });"],"type": "text/javascript"}}],
+          "request": {"method": "POST","header": [{"key": "Content-Type","value": "application/json"}],"body": {"mode": "raw","raw": "{\"branchNumber\": 3, \"name\": \"East Branch\"}"},"url": {"raw": "http://localhost:8081/api/agency-branches/save","host": ["localhost"],"port": "8081","path": ["api","agency-branches","save"]}}
+        },
+        {
+          "name": "B2 - Get All AgencyBranches",
+          "event": [{"listen": "test","script": {"exec": ["pm.test('Status 200', function(){ pm.response.to.have.status(200); });","pm.test('Returns array', function(){ pm.expect(pm.response.json()).to.be.an('array'); });"],"type": "text/javascript"}}],
+          "request": {"method": "GET","url": {"raw": "http://localhost:8081/api/agency-branches/all","host": ["localhost"],"port": "8081","path": ["api","agency-branches","all"]}}
+        },
+        {
+          "name": "B3 - Get AgencyBranch by ID",
+          "event": [{"listen": "test","script": {"exec": ["pm.test('Status 200', function(){ pm.response.to.have.status(200); });","pm.test('Has id', function(){ pm.expect(pm.response.json()).to.have.property('id'); });"],"type": "text/javascript"}}],
+          "request": {"method": "GET","url": {"raw": "http://localhost:8081/api/agency-branches/{{branchId1}}","host": ["localhost"],"port": "8081","path": ["api","agency-branches","{{branchId1}}"]}}
+        },
+        {
+          "name": "B4 - Get AgencyBranch by ID (not found)",
+          "event": [{"listen": "test","script": {"exec": ["pm.test('Status 404', function(){ pm.response.to.have.status(404); });"],"type": "text/javascript"}}],
+          "request": {"method": "GET","url": {"raw": "http://localhost:8081/api/agency-branches/00000000-0000-0000-0000-000000000000","host": ["localhost"],"port": "8081","path": ["api","agency-branches","00000000-0000-0000-0000-000000000000"]}}
+        },
+        {
+          "name": "B5 - Update AgencyBranch",
+          "event": [{"listen": "test","script": {"exec": ["pm.test('Status 200', function(){ pm.response.to.have.status(200); });","pm.test('Name updated', function(){ pm.expect(pm.response.json().name).to.eql('Main Branch Updated'); });"],"type": "text/javascript"}}],
+          "request": {"method": "PUT","header": [{"key": "Content-Type","value": "application/json"}],"body": {"mode": "raw","raw": "{\"branchNumber\": 1, \"name\": \"Main Branch Updated\"}"},"url": {"raw": "http://localhost:8081/api/agency-branches/update/{{branchId1}}","host": ["localhost"],"port": "8081","path": ["api","agency-branches","update","{{branchId1}}"]}}
+        },
+        {
+          "name": "B6 - Delete AgencyBranch",
+          "event": [{"listen": "test","script": {"exec": ["pm.test('Status 200', function(){ pm.response.to.have.status(200); });","pm.test('Deleted message', function(){ pm.expect(pm.response.text()).to.include('deleted successfully'); });"],"type": "text/javascript"}}],
+          "request": {"method": "DELETE","url": {"raw": "http://localhost:8081/api/agency-branches/delete/{{branchId2}}","host": ["localhost"],"port": "8081","path": ["api","agency-branches","delete","{{branchId2}}"]}}
+        },
+        {
+          "name": "B7 - Get Free AgencyBranches",
+          "event": [{"listen": "test","script": {"exec": ["pm.test('Status 200', function(){ pm.response.to.have.status(200); });","pm.test('Returns array', function(){ pm.expect(pm.response.json()).to.be.an('array'); });"],"type": "text/javascript"}}],
+          "request": {"method": "GET","url": {"raw": "http://localhost:8081/api/agency-branches/free","host": ["localhost"],"port": "8081","path": ["api","agency-branches","free"]}}
+        }
+      ]
+    },
+    {
+      "name": "C - TravelAgent",
+      "item": [
+        {
+          "name": "C1 - Save TravelAgent",
+          "event": [{"listen": "test","script": {"exec": ["pm.test('Status 201', function(){ pm.response.to.have.status(201); });","pm.test('Saved successfully', function(){ pm.expect(pm.response.text()).to.include('Saved successfully'); });"],"type": "text/javascript"}}],
+          "request": {"method": "POST","header": [{"key": "Content-Type","value": "application/json"}],"body": {"mode": "raw","raw": "{\"firstName\": \"Bob\", \"lastName\": \"Jones\", \"email\": \"bob@example.com\"}"},"url": {"raw": "http://localhost:8081/api/travel-agents/save","host": ["localhost"],"port": "8081","path": ["api","travel-agents","save"]}}
+        },
+        {
+          "name": "C2 - Get All TravelAgents",
+          "event": [{"listen": "test","script": {"exec": ["pm.test('Status 200', function(){ pm.response.to.have.status(200); });","pm.test('Returns array', function(){ pm.expect(pm.response.json()).to.be.an('array'); });"],"type": "text/javascript"}}],
+          "request": {"method": "GET","url": {"raw": "http://localhost:8081/api/travel-agents/all","host": ["localhost"],"port": "8081","path": ["api","travel-agents","all"]}}
+        },
+        {
+          "name": "C3 - Get TravelAgent by ID",
+          "event": [{"listen": "test","script": {"exec": ["pm.test('Status 200', function(){ pm.response.to.have.status(200); });","pm.test('Has id', function(){ pm.expect(pm.response.json()).to.have.property('id'); });"],"type": "text/javascript"}}],
+          "request": {"method": "GET","url": {"raw": "http://localhost:8081/api/travel-agents/{{agentId1}}","host": ["localhost"],"port": "8081","path": ["api","travel-agents","{{agentId1}}"]}}
+        },
+        {
+          "name": "C4 - Get TravelAgent by ID (not found)",
+          "event": [{"listen": "test","script": {"exec": ["pm.test('Status 404', function(){ pm.response.to.have.status(404); });"],"type": "text/javascript"}}],
+          "request": {"method": "GET","url": {"raw": "http://localhost:8081/api/travel-agents/00000000-0000-0000-0000-000000000000","host": ["localhost"],"port": "8081","path": ["api","travel-agents","00000000-0000-0000-0000-000000000000"]}}
+        },
+        {
+          "name": "C5 - Update TravelAgent",
+          "event": [{"listen": "test","script": {"exec": ["pm.test('Status 200', function(){ pm.response.to.have.status(200); });","pm.test('Name updated', function(){ pm.expect(pm.response.json().firstName).to.eql('Alice Updated'); });"],"type": "text/javascript"}}],
+          "request": {"method": "PUT","header": [{"key": "Content-Type","value": "application/json"}],"body": {"mode": "raw","raw": "{\"firstName\": \"Alice Updated\", \"lastName\": \"Smith\", \"email\": \"alice@example.com\"}"},"url": {"raw": "http://localhost:8081/api/travel-agents/update/{{agentId1}}","host": ["localhost"],"port": "8081","path": ["api","travel-agents","update","{{agentId1}}"]}}
+        },
+        {
+          "name": "C6 - Delete TravelAgent",
+          "event": [{"listen": "test","script": {"exec": ["pm.test('Status 200', function(){ pm.response.to.have.status(200); });","pm.test('Deleted message', function(){ pm.expect(pm.response.text()).to.include('deleted successfully'); });"],"type": "text/javascript"}}],
+          "request": {"method": "DELETE","url": {"raw": "http://localhost:8081/api/travel-agents/delete/{{agentId1}}","host": ["localhost"],"port": "8081","path": ["api","travel-agents","delete","{{agentId1}}"]}}
+        },
+        {
+          "name": "C7 - Get TravelAgents by TravelInterest",
+          "event": [{"listen": "test","script": {"exec": ["pm.test('Status 200', function(){ pm.response.to.have.status(200); });","pm.test('Returns array', function(){ pm.expect(pm.response.json()).to.be.an('array'); });"],"type": "text/javascript"}}],
+          "request": {"method": "GET","url": {"raw": "http://localhost:8081/api/travel-agents/by-travel-interest?name=Adventure","host": ["localhost"],"port": "8081","path": ["api","travel-agents","by-travel-interest"],"query": [{"key": "name","value": "Adventure"}]}}
+        },
+        {
+          "name": "C8 - Add TravelInterest to TravelAgent",
+          "event": [{"listen": "test","script": {"exec": ["pm.test('Status 200', function(){ pm.response.to.have.status(200); });","pm.test('Interest added', function(){ pm.expect(pm.response.text()).to.include('Travel interest added'); });"],"type": "text/javascript"}}],
+          "request": {"method": "PUT","url": {"raw": "http://localhost:8081/api/travel-agents/{{agentId1}}/travel-interests/{{interestId1}}","host": ["localhost"],"port": "8081","path": ["api","travel-agents","{{agentId1}}","travel-interests","{{interestId1}}"]}}
+        },
+        {
+          "name": "C9 - Add TravelInterest to TravelAgent (duplicate)",
+          "event": [{"listen": "test","script": {"exec": ["pm.test('Status 409', function(){ pm.response.to.have.status(409); });"],"type": "text/javascript"}}],
+          "request": {"method": "PUT","url": {"raw": "http://localhost:8081/api/travel-agents/{{agentId1}}/travel-interests/{{interestId1}}","host": ["localhost"],"port": "8081","path": ["api","travel-agents","{{agentId1}}","travel-interests","{{interestId1}}"]}}
+        },
+        {
+          "name": "C10 - Change AgencyBranch of TravelAgent",
+          "event": [{"listen": "test","script": {"exec": ["pm.test('Status 200', function(){ pm.response.to.have.status(200); });","pm.test('Branch changed', function(){ pm.expect(pm.response.text()).to.include('Agency branch changed successfully'); });"],"type": "text/javascript"}}],
+          "request": {"method": "PATCH","url": {"raw": "http://localhost:8081/api/travel-agents/{{agentId1}}/agency-branch?branchNumber=1","host": ["localhost"],"port": "8081","path": ["api","travel-agents","{{agentId1}}","agency-branch"],"query": [{"key": "branchNumber","value": "1"}]}}
+        },
+        {
+          "name": "C11 - Change AgencyBranch (branch taken)",
+          "event": [{"listen": "test","script": {"exec": ["pm.test('Status 409', function(){ pm.response.to.have.status(409); });"],"type": "text/javascript"}}],
+          "request": {"method": "PATCH","url": {"raw": "http://localhost:8081/api/travel-agents/{{agentId1}}/agency-branch?branchNumber=1","host": ["localhost"],"port": "8081","path": ["api","travel-agents","{{agentId1}}","agency-branch"],"query": [{"key": "branchNumber","value": "1"}]}}
+        }
+      ]
+    },
+    {
+      "name": "D - Traveler",
+      "item": [
+        {
+          "name": "D1 - Save Traveler",
+          "event": [{"listen": "test","script": {"exec": ["pm.test('Status 201', function(){ pm.response.to.have.status(201); });","pm.test('Saved successfully', function(){ pm.expect(pm.response.text()).to.include('Saved successfully'); });"],"type": "text/javascript"}}],
+          "request": {"method": "POST","header": [{"key": "Content-Type","value": "application/json"}],"body": {"mode": "raw","raw": "{\"firstName\": \"Jane\", \"lastName\": \"Doe\", \"passportNumber\": \"P999888\", \"email\": \"jane@example.com\", \"nationality\": \"British\"}"},"url": {"raw": "http://localhost:8081/api/travelers/save","host": ["localhost"],"port": "8081","path": ["api","travelers","save"]}}
+        },
+        {
+          "name": "D2 - Get All Travelers",
+          "event": [{"listen": "test","script": {"exec": ["pm.test('Status 200', function(){ pm.response.to.have.status(200); });","pm.test('Returns array', function(){ pm.expect(pm.response.json()).to.be.an('array'); });"],"type": "text/javascript"}}],
+          "request": {"method": "GET","url": {"raw": "http://localhost:8081/api/travelers/all","host": ["localhost"],"port": "8081","path": ["api","travelers","all"]}}
+        },
+        {
+          "name": "D3 - Get Traveler by ID",
+          "event": [{"listen": "test","script": {"exec": ["pm.test('Status 200', function(){ pm.response.to.have.status(200); });","pm.test('Has id', function(){ pm.expect(pm.response.json()).to.have.property('id'); });"],"type": "text/javascript"}}],
+          "request": {"method": "GET","url": {"raw": "http://localhost:8081/api/travelers/{{travelerId1}}","host": ["localhost"],"port": "8081","path": ["api","travelers","{{travelerId1}}"]}}
+        },
+        {
+          "name": "D4 - Get Traveler by ID (not found)",
+          "event": [{"listen": "test","script": {"exec": ["pm.test('Status 404', function(){ pm.response.to.have.status(404); });"],"type": "text/javascript"}}],
+          "request": {"method": "GET","url": {"raw": "http://localhost:8081/api/travelers/00000000-0000-0000-0000-000000000000","host": ["localhost"],"port": "8081","path": ["api","travelers","00000000-0000-0000-0000-000000000000"]}}
+        },
+        {
+          "name": "D5 - Update Traveler",
+          "event": [{"listen": "test","script": {"exec": ["pm.test('Status 200', function(){ pm.response.to.have.status(200); });","pm.test('Name updated', function(){ pm.expect(pm.response.json().firstName).to.eql('John Updated'); });"],"type": "text/javascript"}}],
+          "request": {"method": "PUT","header": [{"key": "Content-Type","value": "application/json"}],"body": {"mode": "raw","raw": "{\"firstName\": \"John Updated\", \"lastName\": \"Doe\", \"passportNumber\": \"P123456\", \"email\": \"john@example.com\", \"nationality\": \"American\"}"},"url": {"raw": "http://localhost:8081/api/travelers/update/{{travelerId1}}","host": ["localhost"],"port": "8081","path": ["api","travelers","update","{{travelerId1}}"]}}
+        },
+        {
+          "name": "D6 - Delete Traveler",
+          "event": [{"listen": "test","script": {"exec": ["pm.test('Status 200', function(){ pm.response.to.have.status(200); });","pm.test('Deleted message', function(){ pm.expect(pm.response.text()).to.include('deleted successfully'); });"],"type": "text/javascript"}}],
+          "request": {"method": "DELETE","url": {"raw": "http://localhost:8081/api/travelers/delete/{{travelerId1}}","host": ["localhost"],"port": "8081","path": ["api","travelers","delete","{{travelerId1}}"]}}
+        },
+        {
+          "name": "D7 - Get Travelers by Nationality",
+          "event": [{"listen": "test","script": {"exec": ["pm.test('Status 200', function(){ pm.response.to.have.status(200); });","pm.test('Returns array', function(){ pm.expect(pm.response.json()).to.be.an('array'); });"],"type": "text/javascript"}}],
+          "request": {"method": "GET","url": {"raw": "http://localhost:8081/api/travelers/by-nationality?nationality=American","host": ["localhost"],"port": "8081","path": ["api","travelers","by-nationality"],"query": [{"key": "nationality","value": "American"}]}}
+        },
+        {
+          "name": "D8 - Get Travelers of TravelAgent",
+          "event": [{"listen": "test","script": {"exec": ["pm.test('Status 200', function(){ pm.response.to.have.status(200); });","pm.test('Returns array', function(){ pm.expect(pm.response.json()).to.be.an('array'); });"],"type": "text/javascript"}}],
+          "request": {"method": "GET","url": {"raw": "http://localhost:8081/api/travelers/of-travel-agent/{{agentId1}}","host": ["localhost"],"port": "8081","path": ["api","travelers","of-travel-agent","{{agentId1}}"]}}
+        }
+      ]
+    },
+    {
+      "name": "E - TripPlan",
+      "item": [
+        {
+          "name": "E1 - Save TripPlan",
+          "event": [{"listen":"test","script":{"exec":["pm.test('Status 201', function(){ pm.response.to.have.status(201); });","pm.test('Saved successfully', function(){ pm.expect(pm.response.text()).to.include('Trip plan saved successfully'); });"],"type":"text/javascript"}}],
+          "request": {"method":"POST","header":[{"key":"Content-Type","value":"application/json"}],"body":{"mode":"raw","raw":"{\"departureDate\": \"2099-06-15\", \"destination\": \"Tokyo\", \"budget\": 5000, \"traveler\": {\"id\": \"{{travelerId1}}\"}, \"travelAgent\": {\"id\": \"{{agentId1}}\"}}"},"url":{"raw":"http://localhost:8081/api/trip-plans/save","host":["localhost"],"port":"8081","path":["api","trip-plans","save"]}}
+        },
+        {
+          "name": "E2 - Save TripPlan (past date)",
+          "event": [{"listen":"test","script":{"exec":["pm.test('Status 400', function(){ pm.response.to.have.status(400); });","pm.test('Past date message', function(){ pm.expect(pm.response.text()).to.include('cannot be in the past'); });"],"type":"text/javascript"}}],
+          "request": {"method":"POST","header":[{"key":"Content-Type","value":"application/json"}],"body":{"mode":"raw","raw":"{\"departureDate\": \"2000-01-01\", \"destination\": \"Rome\", \"budget\": 1000, \"traveler\": {\"id\": \"{{travelerId1}}\"}, \"travelAgent\": {\"id\": \"{{agentId1}}\"}}"},"url":{"raw":"http://localhost:8081/api/trip-plans/save","host":["localhost"],"port":"8081","path":["api","trip-plans","save"]}}
+        },
+        {
+          "name": "E3 - Get All TripPlans",
+          "event": [{"listen":"test","script":{"exec":["pm.test('Status 200', function(){ pm.response.to.have.status(200); });","pm.test('Returns array', function(){ pm.expect(pm.response.json()).to.be.an('array'); });"],"type":"text/javascript"}}],
+          "request": {"method":"GET","url":{"raw":"http://localhost:8081/api/trip-plans/all","host":["localhost"],"port":"8081","path":["api","trip-plans","all"]}}
+        },
+        {
+          "name": "E4 - Get TripPlan by ID",
+          "event": [{"listen":"test","script":{"exec":["pm.test('Status 200', function(){ pm.response.to.have.status(200); });","pm.test('Has id', function(){ pm.expect(pm.response.json()).to.have.property('id'); });"],"type":"text/javascript"}}],
+          "request": {"method":"GET","url":{"raw":"http://localhost:8081/api/trip-plans/{{tripPlanId1}}","host":["localhost"],"port":"8081","path":["api","trip-plans","{{tripPlanId1}}"]}}
+        },
+        {
+          "name": "E5 - Get TripPlan by ID (not found)",
+          "event": [{"listen":"test","script":{"exec":["pm.test('Status 404', function(){ pm.response.to.have.status(404); });"],"type":"text/javascript"}}],
+          "request": {"method":"GET","url":{"raw":"http://localhost:8081/api/trip-plans/00000000-0000-0000-0000-000000000000","host":["localhost"],"port":"8081","path":["api","trip-plans","00000000-0000-0000-0000-000000000000"]}}
+        },
+        {
+          "name": "E6 - Update TripPlan",
+          "event": [{"listen":"test","script":{"exec":["pm.test('Status 200', function(){ pm.response.to.have.status(200); });","pm.test('Destination updated', function(){ pm.expect(pm.response.json().destination).to.eql('Berlin'); });"],"type":"text/javascript"}}],
+          "request": {"method":"PUT","header":[{"key":"Content-Type","value":"application/json"}],"body":{"mode":"raw","raw":"{\"departureDate\": \"2099-12-01\", \"destination\": \"Berlin\", \"budget\": 3000, \"traveler\": {\"id\": \"{{travelerId1}}\"}, \"travelAgent\": {\"id\": \"{{agentId1}}\"}}"},"url":{"raw":"http://localhost:8081/api/trip-plans/update/{{tripPlanId1}}","host":["localhost"],"port":"8081","path":["api","trip-plans","update","{{tripPlanId1}}"]}}
+        },
+        {
+          "name": "E7 - Get TripPlans by Status",
+          "event": [{"listen":"test","script":{"exec":["pm.test('Status 200', function(){ pm.response.to.have.status(200); });","pm.test('Returns array', function(){ pm.expect(pm.response.json()).to.be.an('array'); });"],"type":"text/javascript"}}],
+          "request": {"method":"GET","url":{"raw":"http://localhost:8081/api/trip-plans/by-status?status=DRAFTED","host":["localhost"],"port":"8081","path":["api","trip-plans","by-status"],"query":[{"key":"status","value":"DRAFTED"}]}}
+        },
+        {
+          "name": "E8 - Get TripPlans between dates",
+          "event": [{"listen":"test","script":{"exec":["pm.test('Status 200', function(){ pm.response.to.have.status(200); });","pm.test('Returns array', function(){ pm.expect(pm.response.json()).to.be.an('array'); });"],"type":"text/javascript"}}],
+          "request": {"method":"GET","url":{"raw":"http://localhost:8081/api/trip-plans/between?start=2099-01-01&end=2099-12-31","host":["localhost"],"port":"8081","path":["api","trip-plans","between"],"query":[{"key":"start","value":"2099-01-01"},{"key":"end","value":"2099-12-31"}]}}
+        },
+        {
+          "name": "E9 - Change TripPlan status to FINALIZED",
+          "event": [{"listen":"test","script":{"exec":["pm.test('Status 200', function(){ pm.response.to.have.status(200); });","pm.test('Status updated', function(){ pm.expect(pm.response.text()).to.include('status updated successfully'); });"],"type":"text/javascript"}}],
+          "request": {"method":"PATCH","url":{"raw":"http://localhost:8081/api/trip-plans/{{tripPlanId1}}/status?status=FINALIZED","host":["localhost"],"port":"8081","path":["api","trip-plans","{{tripPlanId1}}","status"],"query":[{"key":"status","value":"FINALIZED"}]}}
+        },
+        {
+          "name": "E10 - Change TripPlan status to TRAVELLED",
+          "event": [{"listen":"test","script":{"exec":["pm.test('Status 200', function(){ pm.response.to.have.status(200); });","pm.test('Status updated', function(){ pm.expect(pm.response.text()).to.include('status updated successfully'); });"],"type":"text/javascript"}}],
+          "request": {"method":"PATCH","url":{"raw":"http://localhost:8081/api/trip-plans/{{tripPlanId1}}/status?status=TRAVELLED","host":["localhost"],"port":"8081","path":["api","trip-plans","{{tripPlanId1}}","status"],"query":[{"key":"status","value":"TRAVELLED"}]}}
+        },
+        {
+          "name": "E11 - Change TripPlan status (invalid transition)",
+          "event": [{"listen":"test","script":{"exec":["pm.test('Status 400', function(){ pm.response.to.have.status(400); });","pm.test('Cannot change message', function(){ pm.expect(pm.response.text()).to.include('Cannot change status'); });"],"type":"text/javascript"}}],
+          "request": {"method":"PATCH","url":{"raw":"http://localhost:8081/api/trip-plans/{{tripPlanId1}}/status?status=DRAFTED","host":["localhost"],"port":"8081","path":["api","trip-plans","{{tripPlanId1}}","status"],"query":[{"key":"status","value":"DRAFTED"}]}}
+        },
+        {
+          "name": "E12 - Get TripPlan stats by status",
+          "event": [{"listen":"test","script":{"exec":["pm.test('Status 200', function(){ pm.response.to.have.status(200); });","pm.test('Returns array', function(){ pm.expect(pm.response.json()).to.be.an('array'); });"],"type":"text/javascript"}}],
+          "request": {"method":"GET","url":{"raw":"http://localhost:8081/api/trip-plans/stats/by-status","host":["localhost"],"port":"8081","path":["api","trip-plans","stats","by-status"]}}
+        },
+        {
+          "name": "E13 - Cancel TripPlans by agent and date",
+          "event": [{"listen":"test","script":{"exec":["pm.test('Status 200', function(){ pm.response.to.have.status(200); });","pm.test('Cancelled message', function(){ pm.expect(pm.response.text()).to.include('trip plans cancelled'); });"],"type":"text/javascript"}}],
+          "request": {"method":"PATCH","url":{"raw":"http://localhost:8081/api/trip-plans/cancel-day?travelAgentId={{agentId1}}&date=2099-06-15","host":["localhost"],"port":"8081","path":["api","trip-plans","cancel-day"],"query":[{"key":"travelAgentId","value":"{{agentId1}}"},{"key":"date","value":"2099-06-15"}]}}
+        },
+        {
+          "name": "E14 - Delete TripPlan (has expenses block)",
+          "event": [{"listen":"test","script":{"exec":["pm.test('Status 200 or 409', function(){ pm.expect([200,409]).to.include(pm.response.code); });"],"type":"text/javascript"}}],
+          "request": {"method":"DELETE","url":{"raw":"http://localhost:8081/api/trip-plans/delete/{{tripPlanId1}}","host":["localhost"],"port":"8081","path":["api","trip-plans","delete","{{tripPlanId1}}"]}}
+        }
+      ]
+    },
+    {
+      "name": "F - TripExpense",
+      "item": [
+        {
+          "name": "F1 - Save TripExpense",
+          "event": [{"listen":"test","script":{"exec":["pm.test('Status 201', function(){ pm.response.to.have.status(201); });","pm.test('Saved successfully', function(){ pm.expect(pm.response.text()).to.include('Trip expense saved successfully'); });"],"type":"text/javascript"}}],
+          "request": {"method":"POST","header":[{"key":"Content-Type","value":"application/json"}],"body":{"mode":"raw","raw":"{\"expenseName\": \"Hotel\", \"note\": \"3 nights\", \"amount\": 600}"},"url":{"raw":"http://localhost:8081/api/trip-expenses/save?tripPlanId={{tripPlanId1}}","host":["localhost"],"port":"8081","path":["api","trip-expenses","save"],"query":[{"key":"tripPlanId","value":"{{tripPlanId1}}"}]}}
+        },
+        {
+          "name": "F2 - Save TripExpense (trip plan not TRAVELLED)",
+          "event": [{"listen":"test","script":{"exec":["pm.test('Status 400 or 404', function(){ pm.expect([400,404]).to.include(pm.response.code); });"],"type":"text/javascript"}}],
+          "request": {"method":"POST","header":[{"key":"Content-Type","value":"application/json"}],"body":{"mode":"raw","raw":"{\"expenseName\": \"Flight\", \"note\": \"one way\", \"amount\": 400}"},"url":{"raw":"http://localhost:8081/api/trip-expenses/save?tripPlanId=00000000-0000-0000-0000-000000000000","host":["localhost"],"port":"8081","path":["api","trip-expenses","save"],"query":[{"key":"tripPlanId","value":"00000000-0000-0000-0000-000000000000"}]}}
+        },
+        {
+          "name": "F3 - Get All TripExpenses",
+          "event": [{"listen":"test","script":{"exec":["pm.test('Status 200', function(){ pm.response.to.have.status(200); });","pm.test('Returns array', function(){ pm.expect(pm.response.json()).to.be.an('array'); });","var data = pm.response.json(); if(data.length > 0){ pm.collectionVariables.set('expenseId1', data[0].id); }"],"type":"text/javascript"}}],
+          "request": {"method":"GET","url":{"raw":"http://localhost:8081/api/trip-expenses/all","host":["localhost"],"port":"8081","path":["api","trip-expenses","all"]}}
+        },
+        {
+          "name": "F4 - Get TripExpense by ID",
+          "event": [{"listen":"test","script":{"exec":["pm.test('Status 200', function(){ pm.response.to.have.status(200); });","pm.test('Has id', function(){ pm.expect(pm.response.json()).to.have.property('id'); });"],"type":"text/javascript"}}],
+          "request": {"method":"GET","url":{"raw":"http://localhost:8081/api/trip-expenses/{{expenseId1}}","host":["localhost"],"port":"8081","path":["api","trip-expenses","{{expenseId1}}"]}}
+        },
+        {
+          "name": "F5 - Get TripExpense by ID (not found)",
+          "event": [{"listen":"test","script":{"exec":["pm.test('Status 404', function(){ pm.response.to.have.status(404); });"],"type":"text/javascript"}}],
+          "request": {"method":"GET","url":{"raw":"http://localhost:8081/api/trip-expenses/00000000-0000-0000-0000-000000000000","host":["localhost"],"port":"8081","path":["api","trip-expenses","00000000-0000-0000-0000-000000000000"]}}
+        },
+        {
+          "name": "F6 - Get TripExpenses by Traveler passport",
+          "event": [{"listen":"test","script":{"exec":["pm.test('Status 200', function(){ pm.response.to.have.status(200); });","pm.test('Returns array', function(){ pm.expect(pm.response.json()).to.be.an('array'); });"],"type":"text/javascript"}}],
+          "request": {"method":"GET","url":{"raw":"http://localhost:8081/api/trip-expenses/traveler/{{travelerPassport1}}","host":["localhost"],"port":"8081","path":["api","trip-expenses","traveler","{{travelerPassport1}}"]}}
+        },
+        {
+          "name": "F7 - Delete TripExpense",
+          "event": [{"listen":"test","script":{"exec":["pm.test('Status 200', function(){ pm.response.to.have.status(200); });","pm.test('Deleted message', function(){ pm.expect(pm.response.text()).to.include('deleted successfully'); });"],"type":"text/javascript"}}],
+          "request": {"method":"DELETE","url":{"raw":"http://localhost:8081/api/trip-expenses/delete/{{expenseId1}}","host":["localhost"],"port":"8081","path":["api","trip-expenses","delete","{{expenseId1}}"]}}
+        }
+      ]
+    },
+    {
+      "name": "G - Dashboard",
+      "item": [
+        {
+          "name": "G1 - Get Dashboard Summary",
+          "event": [{"listen":"test","script":{"exec":["pm.test('Status 200', function(){ pm.response.to.have.status(200); });","pm.test('Has travelers key', function(){ pm.expect(pm.response.json()).to.have.property('travelers'); });","pm.test('Has travelAgents key', function(){ pm.expect(pm.response.json()).to.have.property('travelAgents'); });"],"type":"text/javascript"}}],
+          "request": {"method":"GET","url":{"raw":"http://localhost:8081/api/dashboard/summary","host":["localhost"],"port":"8081","path":["api","dashboard","summary"]}}
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {"key":"interestId1","value":""},
+    {"key":"interestId2","value":""},
+    {"key":"branchId1","value":""},
+    {"key":"branchId2","value":""},
+    {"key":"agentId1","value":""},
+    {"key":"travelerId1","value":""},
+    {"key":"travelerPassport1","value":""},
+    {"key":"tripPlanId1","value":""},
+    {"key":"expenseId1","value":""}
+  ]
+}
