@@ -30,6 +30,7 @@ CREATE DATABASE travel_ease_db;
 ```
 
 The app uses these connection settings:
+
 - Host: localhost:5432
 - Database: travel_ease_db
 - Username: postgres
@@ -63,12 +64,12 @@ To run again from scratch: drop and recreate `travel_ease_db`, then restart the 
 
 ## Endpoints
 
-| Resource | Path |
-|----------|------|
-| Travel Interests | `/api/travel-interests` |
-| Agency Branches | `/api/agency-branches` |
-| Travel Agents | `/api/travel-agents` |
-| Travelers | `/api/travelers` |
-| Trip Plans | `/api/trip-plans` |
-| Trip Expenses | `/api/trip-expenses` |
-| Dashboard | `/api/dashboard` |
+| Resource         | Path                       |
+|------------------|----------------------------|
+| Travel Interests | `/api/travel-interests`    |
+| Agency Branches  | `/api/agency-branches`     |
+| Travel Agents    | `/api/travel-agents`       |
+| Travelers        | `/api/travelers`           |
+| Trip Plans       | `/api/trip-plans`          |
+| Trip Expenses    | `/api/trip-expenses`       |
+| Dashboard        | `/api/dashboard`           |
