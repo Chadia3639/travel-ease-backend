@@ -1,97 +1,72 @@
 # TravelEase Backend
 
-## Student Information
+**Name:** Uwamahoro Rwema Chadia  
+**Student ID:** 26752  
+**Project:** TravelEase Backend
 
-| Field        | Value                     |
-|--------------|---------------------------|
-| Name         | Uwamahoro Rwema Chadia    |
-| Student ID   | 26752                     |
-| Project Name | TravelEase Backend        |
+---
 
-## Tech Stack
+## What this project is
+
+A REST API for a travel agency management system built with Spring Boot. It handles travel interests, agency branches, travel agents, travelers, trip plans, trip expenses, and a dashboard summary.
+
+## Tech used
 
 - Java 23
 - Spring Boot 4.1.1
 - Spring Data JPA
 - PostgreSQL 16
 
-## Prerequisites
+## How to run it
 
-- Java 17 or newer (tested on Java 23)
-- PostgreSQL running on `localhost:5432`
-- Internet access (first run downloads Maven dependencies)
+### 1. Create the database
 
-## Steps to Run the API
-
-### 1. Set up PostgreSQL
-
-Make sure PostgreSQL is running, then create the database:
+Make sure PostgreSQL is running on your machine, then create the database:
 
 ```sql
 CREATE DATABASE travel_ease_db;
 ```
 
-Hibernate will create all tables automatically on first startup (`ddl-auto=update`).
+The app uses these connection settings:
+- Host: localhost:5432
+- Database: travel_ease_db
+- Username: postgres
+- Password: 1234
 
-The app connects with:
-- **Host:** localhost:5432
-- **Database:** travel_ease_db
-- **Username:** postgres
-- **Password:** 1234
+If your password is different, change it in `src/main/resources/application.properties`.
 
-If your PostgreSQL password differs, update `src/main/resources/application.properties`.
+Hibernate will create all the tables automatically when the app starts.
 
-### 2. Delete old build (optional but recommended)
+### 2. Start the app
 
-```bash
-# Windows
-rmdir /s /q target
-
-# Mac/Linux
-rm -rf target
-```
-
-### 3. Start the application
-
-**Windows:**
+On Windows:
 ```bash
 mvnw.cmd spring-boot:run
 ```
 
-**Mac/Linux:**
+On Mac/Linux:
 ```bash
 ./mvnw spring-boot:run
 ```
 
-Wait for:
-```
-Started TravelEaseApplication
-```
+Wait until you see `Started TravelEaseApplication` in the console.
 
-### 4. API Base URL
+The API runs on: `http://localhost:8081/api`
 
-```
-http://localhost:8081/api
-```
+### 3. Test with Postman
 
-### 5. Test with Postman
+Import `travel-ease-midterm.postman_collection.json` into Postman and run the collection in order starting from the `0 Seed data` folder. That folder seeds the database and saves all the IDs as variables automatically. All requests should pass on a fresh empty database.
 
-1. Import `travel-ease-midterm.postman_collection.json` into Postman.
-2. Open the **Collection Runner**.
-3. Run the entire collection **in order** against an **empty** `travel_ease_db`.
-4. The `0 Seed data` folder seeds the database and stores all IDs automatically.
-5. All tests should pass.
+To run again from scratch: drop and recreate `travel_ease_db`, then restart the app.
 
-> To run again: drop and recreate `travel_ease_db`, then restart the app.
+## Endpoints
 
-## API Endpoints
-
-| Resource         | Base Path                  |
-|------------------|----------------------------|
-| Travel Interests | `/api/travel-interests`    |
-| Agency Branches  | `/api/agency-branches`     |
-| Travel Agents    | `/api/travel-agents`       |
-| Travelers        | `/api/travelers`           |
-| Trip Plans       | `/api/trip-plans`          |
-| Trip Expenses    | `/api/trip-expenses`       |
-| Dashboard        | `/api/dashboard`           |
+| Resource | Path |
+|----------|------|
+| Travel Interests | `/api/travel-interests` |
+| Agency Branches | `/api/agency-branches` |
+| Travel Agents | `/api/travel-agents` |
+| Travelers | `/api/travelers` |
+| Trip Plans | `/api/trip-plans` |
+| Trip Expenses | `/api/trip-expenses` |
+| Dashboard | `/api/dashboard` |
