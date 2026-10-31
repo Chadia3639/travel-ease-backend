@@ -8,8 +8,6 @@
 | Student ID   | 26752                  |
 | Project Name | TravelEase Backend     |
 
----
-
 ## What this project is
 
 A REST API for a travel agency management system built with Spring Boot. It handles travel interests, agency branches, travel agents, travelers, trip plans, trip expenses, and a dashboard summary.
