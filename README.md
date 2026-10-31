@@ -1,7 +1,7 @@
 # TravelEase Backend
 
-**Name:** Uwamahoro Rwema Chadia  
-**Student ID:** 26752  
+**Name:** Uwamahoro Rwema Chadia
+**Student ID:** 26752
 **Project:** TravelEase Backend
 
 ---
