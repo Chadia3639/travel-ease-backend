@@ -22,4 +22,6 @@ public interface TripPlanRepository extends JpaRepository<TripPlan, UUID> {
     @Query("UPDATE TripPlan tp SET tp.status = com.travel_ease.travel_ease.entity.TripStatus.ABANDONED WHERE tp.travelAgent.id = :id AND tp.departureDate = :date AND tp.status <> com.travel_ease.travel_ease.entity.TripStatus.TRAVELLED")
     int cancelDay(@Param("id") UUID travelAgentId, @Param("date") LocalDate date);
     List<TripPlan> findByTravelAgentAndDepartureDate(TravelAgent travelAgent, LocalDate departureDate);
+    long countByDepartureDate(LocalDate date);
+    long countByStatus(TripStatus status);
 }

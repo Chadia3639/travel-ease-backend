@@ -63,6 +63,7 @@ public class Services {
     }
     @Service public static class Traveler {
         @Autowired TravelerRepository repo;
+        @Autowired TravelAgentRepository taRepo;
         public com.travel_ease.travel_ease.entity.Traveler save(com.travel_ease.travel_ease.entity.Traveler t){ return repo.save(t); }
         public List<com.travel_ease.travel_ease.entity.Traveler> findAll(){ return repo.findAll(); }
         public Optional<com.travel_ease.travel_ease.entity.Traveler> findById(UUID id){ return repo.findById(id); }
@@ -70,6 +71,7 @@ public class Services {
         public void delete(UUID id){ repo.deleteById(id); }
         public List<com.travel_ease.travel_ease.entity.Traveler> byNationality(String n){ return repo.findByNationalityIgnoreCaseOrderByLastNameAsc(n); }
         public List<com.travel_ease.travel_ease.entity.Traveler> ofAgent(UUID id){ return repo.findByTravelAgentId(id); }
+        public boolean agentExists(UUID id){ return !taRepo.existsById(id); }
     }
     @Service public static class TripPlan {
         @Autowired TripPlanRepository repo;
@@ -96,6 +98,7 @@ public class Services {
         public List<com.travel_ease.travel_ease.entity.TripPlan> between(LocalDate s, LocalDate e){ return repo.findByDepartureDateBetweenOrderByDepartureDateAsc(s,e); }
         public List<Object[]> stats(){ return repo.countByStatus(); }
         public int cancelDay(UUID agentId, LocalDate date){ return repo.cancelDay(agentId, date); }
+        public org.springframework.data.domain.Page<com.travel_ease.travel_ease.entity.TripPlan> findPage(org.springframework.data.domain.Pageable p){ return repo.findAll(p); }
         public com.travel_ease.travel_ease.entity.TripPlan changeStatus(UUID id, com.travel_ease.travel_ease.entity.TripStatus newStatus){
             Optional<com.travel_ease.travel_ease.entity.TripPlan> tp = repo.findById(id);
             if(tp.isEmpty()) return null;
@@ -135,8 +138,8 @@ public class Services {
             m.put("travelers", trRepo.count());
             m.put("travelAgents", taRepo.count());
             m.put("freeAgencyBranches", (long) abRepo.findFree().size());
-            m.put("departuresToday", tpRepo.count()); // placeholder; should count today
-            m.put("drafted", tpRepo.findByStatusOrderByDepartureDateAsc(com.travel_ease.travel_ease.entity.TripStatus.DRAFTED).size() + 0L);
+            m.put("departuresToday", tpRepo.countByDepartureDate(LocalDate.now()));
+            m.put("drafted", tpRepo.countByStatus(com.travel_ease.travel_ease.entity.TripStatus.DRAFTED));
             m.put("expenses", teRepo.count());
             return m;
         }

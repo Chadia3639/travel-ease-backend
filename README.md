@@ -2,11 +2,11 @@
 
 ## Student Information
 
-| Field        | Value              |
-|--------------|--------------------|
-| Name         | [Your Full Name]   |
-| Student ID   | [Your Student ID]  |
-| Project Name | TravelEase Backend |
+| Field        | Value                     |
+|--------------|---------------------------|
+| Name         | Uwamahoro Rwema Chadia    |
+| Student ID   | 26752                     |
+| Project Name | TravelEase Backend        |
 
 ## Tech Stack
 
