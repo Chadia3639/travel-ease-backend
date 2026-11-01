@@ -15,7 +15,7 @@ import java.util.UUID;
 @RequestMapping("/api/travel-interests")
 class TravelInterestController {
     @Autowired Services.TravelInterest svc;
-    @PostMapping("/save") public ResponseEntity<?> save(@RequestBody TravelInterest t){ svc.save(t); return ResponseEntity.status(201).body("Saved successfully"); }
+    @PostMapping("/save") public ResponseEntity<?> save(@RequestBody TravelInterest t){ svc.save(t); return ResponseEntity.status(201).body("Travel interest saved successfully"); }
     @GetMapping("/all") public List<TravelInterest> all(){ return svc.findAll(); }
     @GetMapping("/{id}") public ResponseEntity<?> get(@PathVariable UUID id){
         return svc.findById(id).map(x->ResponseEntity.ok((Object)x)).orElse(ResponseEntity.status(404).body("The travel interest with that id does not exist"));
@@ -35,7 +35,7 @@ class TravelInterestController {
 @RequestMapping("/api/agency-branches")
 class AgencyBranchController {
     @Autowired Services.AgencyBranch svc;
-    @PostMapping("/save") public ResponseEntity<?> save(@RequestBody AgencyBranch a){ svc.save(a); return ResponseEntity.status(201).body("Saved successfully"); }
+    @PostMapping("/save") public ResponseEntity<?> save(@RequestBody AgencyBranch a){ svc.save(a); return ResponseEntity.status(201).body("Agency branch saved successfully"); }
     @GetMapping("/all") public List<AgencyBranch> all(){ return svc.findAll(); }
     @GetMapping("/{id}") public ResponseEntity<?> get(@PathVariable UUID id){
         return svc.findById(id).map(x->ResponseEntity.ok((Object)x)).orElse(ResponseEntity.status(404).body("The agency branch with that id does not exist"));
@@ -56,7 +56,7 @@ class AgencyBranchController {
 class TravelAgentController {
     @Autowired Services.TravelAgent svc;
     @Autowired Services.TravelInterest tiSvc;
-    @PostMapping("/save") public ResponseEntity<?> save(@RequestBody TravelAgent t){ svc.save(t); return ResponseEntity.status(201).body("Saved successfully"); }
+    @PostMapping("/save") public ResponseEntity<?> save(@RequestBody TravelAgent t){ svc.save(t); return ResponseEntity.status(201).body("Travel agent saved successfully"); }
     @GetMapping("/all") public List<TravelAgent> all(){ return svc.findAll(); }
     @GetMapping("/{id}") public ResponseEntity<?> get(@PathVariable UUID id){
         return svc.findById(id).map(x->ResponseEntity.ok((Object)x)).orElse(ResponseEntity.status(404).body("The travel agent with that id does not exist"));
@@ -90,7 +90,7 @@ class TravelAgentController {
 @RequestMapping("/api/travelers")
 class TravelerController {
     @Autowired Services.Traveler svc;
-    @PostMapping("/save") public ResponseEntity<?> save(@RequestBody Traveler t){ svc.save(t); return ResponseEntity.status(201).body("Saved successfully"); }
+    @PostMapping("/save") public ResponseEntity<?> save(@RequestBody Traveler t){ svc.save(t); return ResponseEntity.status(201).body("Traveler saved successfully"); }
     @GetMapping("/all") public List<Traveler> all(){ return svc.findAll(); }
     @GetMapping("/{id}") public ResponseEntity<?> get(@PathVariable UUID id){
         return svc.findById(id).map(x->ResponseEntity.ok((Object)x)).orElse(ResponseEntity.status(404).body("The traveler with that id does not exist"));
